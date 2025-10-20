@@ -10,3 +10,10 @@ TEST_CASE("parse null") {
     CHECK(result);
     CHECK(value.type == JSON_NULL);
 }
+
+TEST_CASE("parse true") {
+    JsonValue value;
+    bool result = parse_json("true", &value);
+    CHECK(result);
+    CHECK(value.type == JSON_TRUE);
+}

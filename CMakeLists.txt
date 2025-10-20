@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.29)
-project(leap_year)
+project(json_parse)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(leap_year main.cpp parse.cpp)
+add_executable(${PROJECT_NAME} parser_test.cpp parse.cpp)

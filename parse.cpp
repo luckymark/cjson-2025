@@ -10,6 +10,11 @@ bool parse_json(const char *json, JsonValue *value) {
         value->type = JSON_NULL;
         return true;
     }
-    
+
+    if (strcmp(json, "true") == 0) {
+        value->type = JSON_TRUE;
+        return true;
+    }
+
     return false;
 }
