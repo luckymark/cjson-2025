@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-bool parse_bool(const char *json, JsonValue *value) {
+static bool parse_bool(const char *json, JsonValue *value) {
     if (strcmp(json, "true") == 0) {
         value->type = JSON_TRUE;
         return true;
