@@ -15,5 +15,12 @@ TEST_CASE("parse true"){
     JsonValue value;
     bool result = parse_json("true", &value);
     CHECK(result);
-    CHECK(value.type == JSON_TRUE);
+    CHECK(value.type == JSON_TRUE     );
+}
+
+TEST_CASE("parse false") {
+    JsonValue value;
+    bool result = parse_json("false", &value);
+    CHECK(result);
+    CHECK(value.type == JSON_FALSE);
 }

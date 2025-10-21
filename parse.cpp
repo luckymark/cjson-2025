@@ -19,15 +19,11 @@ bool parse_json(const char *json, JsonValue *value) {
     if (json == nullptr || value == nullptr) {
         return false;
     }
+
     if (strcmp(json, "null") == 0) {
         value->type = JSON_NULL;
         return true;
     }
 
-    if (strcmp(json, "true") == 0) {
-        value->type = JSON_TRUE;
-        return true;
-    }
-
-    return false;
+    return parse_bool(json, value);
 }
