@@ -16,12 +16,26 @@ static bool parse_bool(const char *json, JsonValue *value) {
 }
 
 bool parse_json(const char *json, JsonValue *value) {
+
+
     if (json == nullptr || value == nullptr) {
         return false;
+
     }
 
     if (strcmp(json, "null") == 0) {
         value->type = JSON_NULL;
+        return true;
+    }
+
+    size_t size = strlen(json);
+    if (*json == '\"' && json[size - 1] == '\"') {
+        value->type = JSON_STRING;
+
+        value->value = (char*)malloc(size-1);
+        strncpy(value->value, json + 1, size - 2);
+
+        value->value[strlen(value->value)] = '\0';
         return true;
     }
 

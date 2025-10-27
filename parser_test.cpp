@@ -15,7 +15,7 @@ TEST_CASE("parse true"){
     JsonValue value;
     bool result = parse_json("true", &value);
     CHECK(result);
-    CHECK(value.type == JSON_TRUE     );
+    CHECK(value.type == JSON_TRUE);
 }
 
 TEST_CASE("parse false") {
@@ -23,4 +23,25 @@ TEST_CASE("parse false") {
     bool result = parse_json("false", &value);
     CHECK(result);
     CHECK(value.type == JSON_FALSE);
+}
+
+TEST_CASE("parse \"hello\"") {
+    JsonValue value;
+    auto result = parse_json("\"hello\"", &value);
+    CHECK(result);
+    CHECK(value.type == JSON_STRING);
+    CHECK(strcmp(value.value,"hello")==0 );
+}
+
+TEST_CASE("parse \"_world\""){
+    JsonValue value;
+    auto result = parse_json("\"_world\"", &value);
+    CHECK(result);
+    CHECK(value.type == JSON_STRING);
+    CHECK(strcmp(value.value,"_world")==0);
+}
+TEST_CASE("parse \"_world"){
+    JsonValue value;
+    auto result = parse_json("\"_world", &value);
+    CHECK(!result);
 }
