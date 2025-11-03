@@ -5,10 +5,15 @@ typedef enum {
     JSON_TRUE,
     JSON_FALSE,
     JSON_STRING,
+    JSON_NUMBER,
 } JsonType;
 
 typedef struct {
     JsonType type;
-    char* value;
+    union{
+        char* str;
+        double number;
+    } value;
+
 } JsonValue;
 bool parse_json(const char *json, JsonValue *value);

@@ -30,7 +30,7 @@ TEST_CASE("parse \"hello\"") {
     auto result = parse_json("\"hello\"", &value);
     CHECK(result);
     CHECK(value.type == JSON_STRING);
-    CHECK(strcmp(value.value,"hello")==0 );
+    CHECK(strcmp(value.value.str,"hello")==0 );
 }
 
 TEST_CASE("parse \"_world\""){
@@ -38,10 +38,27 @@ TEST_CASE("parse \"_world\""){
     auto result = parse_json("\"_world\"", &value);
     CHECK(result);
     CHECK(value.type == JSON_STRING);
-    CHECK(strcmp(value.value,"_world")==0);
+    CHECK(strcmp(value.value.str,"_world")==0);
 }
+
 TEST_CASE("parse \"_world"){
     JsonValue value;
     auto result = parse_json("\"_world", &value);
     CHECK(!result);
+}
+
+TEST_CASE("parse 1.2") {
+    JsonValue value;
+    auto result = parse_json("1.2", &value);
+    CHECK(result);
+    CHECK(value.type == JSON_NUMBER);
+    CHECK(value.value.number==1.2 );
+}
+
+TEST_CASE("parse -10e6") {
+    JsonValue value;
+    auto result = parse_json("-10e6", &value);
+    CHECK(result);
+    CHECK(value.type == JSON_NUMBER);
+    CHECK(value.value.number==-10e6);
 }
