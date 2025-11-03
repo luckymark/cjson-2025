@@ -1,5 +1,6 @@
 #include "parse.h"
 
+#include <cstdlib>
 #include <cstring>
 
 static bool parse_bool(const char *json, JsonValue *value) {
@@ -32,7 +33,7 @@ bool parse_json(const char *json, JsonValue *value) {
     if (*json == '\"' && json[size - 1] == '\"') {
         value->type = JSON_STRING;
 
-        value->value = (char*)malloc(size-1);
+        value->value = (char*) malloc(size-1);
         strncpy(value->value, json + 1, size - 2);
 
         value->value[strlen(value->value)] = '\0';
